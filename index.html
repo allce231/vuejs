@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>vuetest</title>
+    <script>
+    //ie检测
+    var DEFAULT_VERSION = 8.0;
+    var ua = navigator.userAgent.toLowerCase();
+    var isIE = ua.indexOf("msie")>-1;
+    var safariVersion;
+    if(isIE){
+    safariVersion =  ua.match(/msie ([\d.]+)/)[1];
+    }
+    if(safariVersion <= DEFAULT_VERSION ){
+      alert('系统不支持ie8e及其以下浏览器！')
+    };
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>
