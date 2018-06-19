@@ -1,7 +1,7 @@
-export default function(str, uplow) {
-  if(uplow=='up'){
+export default function (str, uplow) {
+  if (uplow == 'up') {
     return str.toUpperCase()
-  }else{
+  } else {
     return str.toLowerCase()
   }
 }

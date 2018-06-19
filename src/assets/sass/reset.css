@@ -163,3 +163,11 @@ a:hover {
 .clear {
   zoom: 1; /* for IE6 IE7 */
 }
+
+.fl{
+  float: left;
+}
+
+.fr{
+  float: right;
+}

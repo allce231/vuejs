@@ -11,6 +11,13 @@ import * as filters from './filters/' //过滤器
 import store from './store/'
 import ElementUI from 'element-ui'  //饿了么vue template
 import 'element-ui/lib/theme-chalk/index.css'
+import './assets/sass/element-variables.scss'
+//ueditor
+import '../static/UE/ueditor.config.js'
+import '../static/UE/ueditor.all.min.js'
+import '../static/UE/lang/zh-cn/zh-cn.js'
+import '../static/UE/ueditor.parse.min.js'
+
 Vue.use(ElementUI)
 
 promise.polyfill() //promise 兼容ie9,10
@@ -56,6 +63,10 @@ Vue.prototype.axios = axios
 
 //是否需要登录验证
 router.beforeEach(function(to,from,next){
+  console.log(to)
+  if(to.meta.title){
+    document.title = to.meta.title;
+  }
   if(to.meta.auth == true){
     //如果需要登录
     if(!localStorage.token){

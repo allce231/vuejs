@@ -1,47 +1,108 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import HelloWorld from '@/components/HelloWorld'
-// import list from '@/components/list'
 
 Vue.use(Router)
 
-//是否登录验证
-
-
 export default new Router({
   //mode: 'history',//去掉url#
-  routes: [
-    {
+  routes: [{
       path: '/',
       name: 'index',
-      component: resolve => require(['@/components/index'],resolve)
-    },
-    {
-      path: '/list/:id',
-      name: 'list',
-      component: resolve => require(['@/components/list'],resolve)
-    },{
-      path: '/teacher',
-      name: 'teacher',
-      meta:{
+      meta: {
         /*标明需要登录*/
-        auth:true
+        auth: true
       },
-      {
-        path: '/teacher/abc',
-        name: 'teacher',
-        meta:{
-          /*标明需要登录*/
-          auth:true
-        },
-      component: resolve => require(['@/components/teacher/index'],resolve),
-      children: [
-        {
-          path: 'login',
-          name: 'teacherlogin',
-          component: resolve => require(['@/components/teacher/login'],resolve)
+      component: resolve => require(['@/components/index'], resolve),
+      redirect: '/index', //重定向至/index
+      children:[{
+          path: '/index',
+          name: 'index',
+          meta: {
+            title: 'index',
+            auth: true
+          },
+          component: resolve => require(['@/components/tools/index'], resolve)
+        },{
+          path: '/icon',
+          name: 'icon',
+          meta: {
+            title: 'icon',
+            auth: true
+          },
+          component: resolve => require(['@/components/tools/icon'], resolve)
+        },{
+          path: '/table',
+          name: 'table',
+          meta: {
+            title: 'table',
+            auth: true
+          },
+          component: resolve => require(['@/components/tools/table'], resolve)
+        },{
+          path: '/ueditor',
+          name: 'ueditor',
+          meta: {
+            title: 'ueditor',
+            auth: true
+          },
+          component: resolve => require(['@/components/tools/ueditor'], resolve)
+        },{
+          path: '/button',
+          name: 'button',
+          meta: {
+            title: 'button',
+            auth: true
+          },
+          component: resolve => require(['@/components/tools/button'], resolve)
+        },{
+          path: '/form',
+          name: 'form',
+          meta: {
+            title: 'form',
+            auth: true
+          },
+          component: resolve => require(['@/components/tools/form'], resolve)
+        },{
+          path: '/notice',
+          name: 'notice',
+          meta: {
+            title: 'notice',
+            auth: true
+          },
+          component: resolve => require(['@/components/tools/notice'], resolve)
+        },{
+          path: '/upload',
+          name: 'upload',
+          meta: {
+            title: 'upload',
+            auth: true
+          },
+          component: resolve => require(['@/components/tools/upload'], resolve)
+        },{
+          path: '/page',
+          name: 'page',
+          meta: {
+            title: 'page',
+            auth: true
+          },
+          component: resolve => require(['@/components/tools/page'], resolve)
+        },{
+          path: '/progress',
+          name: 'progress',
+          meta: {
+            title: 'progress',
+            auth: true
+          },
+          component: resolve => require(['@/components/tools/progress'], resolve)
         }
       ]
+    },{
+      path: '/login',
+      name: 'login',
+      meta: {
+        title: '登录页'
+      },
+      component: resolve => require(['@/components/login'], resolve)
     }
   ]
 })
