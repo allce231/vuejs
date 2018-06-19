@@ -1,0 +1,11 @@
+<!DOCTYPE html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>vuetest</title><script>//ie检测
+    var DEFAULT_VERSION = 8.0;
+    var ua = navigator.userAgent.toLowerCase();
+    var isIE = ua.indexOf("msie")>-1;
+    var safariVersion;
+    if(isIE){
+    safariVersion =  ua.match(/msie ([\d.]+)/)[1];
+    }
+    if(safariVersion <= DEFAULT_VERSION ){
+      alert('系统不支持ie8e及其以下浏览器！')
+    };</script><link href=/static/css/app.0e960deca7b78ea561d9b18ae50cfd3d.css rel=stylesheet></head><body><div id=app></div><script type=text/javascript src=/static/js/manifest.b455fc58f492987cfb29.js></script><script type=text/javascript src=/static/js/vendor.c0a9d6168a100cca3d77.js></script><script type=text/javascript src=/static/js/app.670666bd06f120ed8e64.js></script></body></html>
