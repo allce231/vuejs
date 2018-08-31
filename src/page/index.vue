@@ -49,7 +49,9 @@
         </el-menu>
       </el-aside>
       <el-main>
+        <!-- <transition name="slide-fade"> -->
         <router-view/>
+        <!-- </transition> -->
       </el-main>
     </el-container>
   </el-container>
@@ -67,7 +69,7 @@
     //对应 Actions中changeMsg方法|| 映射this.changeMsg() 为 this.$store.dispatch('changeMsg')
     created() {
       let that = this;
-      console.log(that);
+      console.log(this.$store.state);
       /*
       setInterval(function(){
         that.times++;
@@ -136,6 +138,18 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <!-- Add "scoped" css作用域只在本页面 -->
 <style lang="scss">
-
+/* 可以设置不同的进入和离开动画 */
+/* 设置持续时间和动画函数 */
+// .slide-fade-enter-active {
+//   transition: all .3s ease;
+// }
+// .slide-fade-leave-active {
+//
+// }
+// .slide-fade-enter
+// /* .slide-fade-leave-active for below version 2.1.8 */ {
+//   transform: translateX(10px);
+//   opacity: 0;
+// }
 
 </style>

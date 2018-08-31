@@ -6,6 +6,7 @@ import router from './router'
 import './assets/sass/reset.css'
 import './assets/sass/main.scss'
 import axios from 'axios'
+import VueAxios from 'vue-axios';
 import promise from 'es6-promise'
 import * as filters from './filters/' //过滤器
 import store from './store/'
@@ -19,6 +20,7 @@ import '../static/UE/lang/zh-cn/zh-cn.js'
 import '../static/UE/ueditor.parse.min.js'
 
 Vue.use(ElementUI)
+Vue.use(VueAxios, axios);
 
 promise.polyfill() //promise 兼容ie9,10
 
@@ -49,21 +51,35 @@ Object.keys(filters).forEach((key) => {
  *  return promise
  */
 
-Vue.prototype.$ajax = function(url,opt){
-  return axios(Object.assign({
-    method: 'POST',
-    url:  api.serverUrl + url
-  },opt))
-}
+// Vue.prototype.$ajax = function(url,opt){
+//   return axios(Object.assign({
+//     method: 'POST',
+//     url:  api.serverUrl + url
+//   },opt))
+// }
 
-Vue.prototype.axios = axios
+// Vue.prototype.axios = axios
 
 //
 // 封装 ajax end
 
+
+// 添加响应拦截器
+Vue.axios.interceptors.response.use(function (response) {
+  // 对响应数据做点什么
+  return response;
+}, function (error) {
+  let e = error.response;
+  
+  console.log(e);
+  store.dispatch('error/changeStatus',parseInt(Math.random()*100000));
+  store.dispatch('error/changeErrorMsg','系统出错！' + e.data.error);
+  // 对响应错误做点什么
+  return Promise.reject(error);
+});
+
 //是否需要登录验证
 router.beforeEach(function(to,from,next){
-  console.log(to)
   if(to.meta.title){
     document.title = to.meta.title;
   }

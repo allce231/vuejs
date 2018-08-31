@@ -12,16 +12,16 @@ export default new Router({
         /*标明需要登录*/
         auth: true
       },
-      component: resolve => require(['@/components/index'], resolve),
+      component: resolve => require(['@/page/index'], resolve),
       redirect: '/index', //重定向至/index
       children:[{
           path: '/index',
-          name: 'index',
+          name: 'mainindex',
           meta: {
             title: 'index',
             auth: true
           },
-          component: resolve => require(['@/components/tools/index'], resolve)
+          component: resolve => require(['@/page/tools/index'], resolve)
         },{
           path: '/icon',
           name: 'icon',
@@ -29,7 +29,7 @@ export default new Router({
             title: 'icon',
             auth: true
           },
-          component: resolve => require(['@/components/tools/icon'], resolve)
+          component: resolve => require(['@/page/tools/icon'], resolve)
         },{
           path: '/table',
           name: 'table',
@@ -37,15 +37,7 @@ export default new Router({
             title: 'table',
             auth: true
           },
-          component: resolve => require(['@/components/tools/table'], resolve)
-        },{
-          path: '/ueditor',
-          name: 'ueditor',
-          meta: {
-            title: 'ueditor',
-            auth: true
-          },
-          component: resolve => require(['@/components/tools/ueditor'], resolve)
+          component: resolve => require(['@/page/tools/table'], resolve)
         },{
           path: '/button',
           name: 'button',
@@ -53,7 +45,7 @@ export default new Router({
             title: 'button',
             auth: true
           },
-          component: resolve => require(['@/components/tools/button'], resolve)
+          component: resolve => require(['@/page/tools/button'], resolve)
         },{
           path: '/form',
           name: 'form',
@@ -61,7 +53,7 @@ export default new Router({
             title: 'form',
             auth: true
           },
-          component: resolve => require(['@/components/tools/form'], resolve)
+          component: resolve => require(['@/page/tools/form'], resolve)
         },{
           path: '/notice',
           name: 'notice',
@@ -69,7 +61,7 @@ export default new Router({
             title: 'notice',
             auth: true
           },
-          component: resolve => require(['@/components/tools/notice'], resolve)
+          component: resolve => require(['@/page/tools/notice'], resolve)
         },{
           path: '/upload',
           name: 'upload',
@@ -77,7 +69,7 @@ export default new Router({
             title: 'upload',
             auth: true
           },
-          component: resolve => require(['@/components/tools/upload'], resolve)
+          component: resolve => require(['@/page/tools/upload'], resolve)
         },{
           path: '/page',
           name: 'page',
@@ -85,7 +77,7 @@ export default new Router({
             title: 'page',
             auth: true
           },
-          component: resolve => require(['@/components/tools/page'], resolve)
+          component: resolve => require(['@/page/tools/page'], resolve)
         },{
           path: '/progress',
           name: 'progress',
@@ -93,7 +85,7 @@ export default new Router({
             title: 'progress',
             auth: true
           },
-          component: resolve => require(['@/components/tools/progress'], resolve)
+          component: resolve => require(['@/page/tools/progress'], resolve)
         }
       ]
     },{
@@ -102,7 +94,7 @@ export default new Router({
       meta: {
         title: '登录页'
       },
-      component: resolve => require(['@/components/login'], resolve)
+      component: resolve => require(['@/page/login'], resolve)
     }
   ]
 })

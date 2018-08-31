@@ -5,8 +5,27 @@
 </template>
 
 <script>
+import store from "@/store"
+import { mapGetters } from 'vuex'
+
 export default {
-  name: 'App'
+  created: function() {
+
+  },
+  computed: {
+    ...mapGetters("error",{
+      errorStatus: "errorStatus",
+      errorMsg: "errorMsg"
+    })
+  },
+  watch: {
+    errorStatus (val){
+      this.$notify.error({
+        title: '温馨提示',
+        message: this.errorMsg
+      });
+    }
+  }
 }
 </script>
 
