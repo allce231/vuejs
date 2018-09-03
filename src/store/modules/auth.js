@@ -22,6 +22,8 @@ const actions = {
           storage.set('userinfo',JSON.stringify(data.data))
         }
         resolve(data);
+      }).catch((e)=>{
+        rejects(e);
       })
     }) 
   }

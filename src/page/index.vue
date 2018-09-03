@@ -15,8 +15,24 @@
     </el-header>
     <el-container>
       <el-aside width="200px">
-        <el-menu :default-active="active" :router="true" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
-          <el-submenu index="1">
+        <el-menu :default-active="$route.path" :router="true" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
+          <el-submenu index="0">
+            <template slot="title">
+              <i class="el-icon-menu"></i>
+              <span slot="title">用户管理</span>
+            </template>
+            <el-menu-item-group>
+              <el-menu-item index="/user/list">用户列表</el-menu-item>
+            </el-menu-item-group>
+            <!-- <el-menu-item-group>
+              <el-menu-item index="1-3">选项3</el-menu-item>
+            </el-menu-item-group>
+            <el-submenu index="1-4">
+              <span slot="title">选项4</span>
+              <el-menu-item index="1-4-1">选项1</el-menu-item>
+            </el-submenu> -->
+          </el-submenu>
+          <!-- <el-submenu index="1">
             <template slot="title">
               <i class="el-icon-menu"></i>
               <span slot="title">组件</span>
@@ -32,20 +48,19 @@
               <el-menu-item index="/upload">Upload 上传</el-menu-item>
               <el-menu-item index="/page">Pagination 分页</el-menu-item>
               <el-menu-item index="/progress">Progress 进度条</el-menu-item>
-
             </el-menu-item-group>
-            <!-- <el-menu-item-group>
+             <el-menu-item-group>
               <el-menu-item index="1-3">选项3</el-menu-item>
             </el-menu-item-group>
             <el-submenu index="1-4">
               <span slot="title">选项4</span>
               <el-menu-item index="1-4-1">选项1</el-menu-item>
-            </el-submenu> -->
-          </el-submenu>
-          <el-menu-item index="#">
+            </el-submenu> 
+          </el-submenu> -->
+          <!-- <el-menu-item index="#">
             <i class="el-icon-more"></i>
             <a href="http://element.eleme.io/#/zh-CN/component/layout" target="_blank"><span slot="title">更多使用文档</span></a>
-          </el-menu-item>
+          </el-menu-item> -->
         </el-menu>
       </el-aside>
       <el-main>

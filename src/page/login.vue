@@ -6,7 +6,7 @@
       <li class="top">用户登录</li>
       <li><el-input v-model="form1.username" placeholder="admin"></el-input></li>
       <li><el-input v-model="form1.password" placeholder="admin"></el-input></li>
-      <li><el-button type="primary" @click="submitForm(form1)">提交</el-button></li>
+      <li><el-button type="primary" v-loading="loading" @click="submitForm(form1)">提交</el-button></li>
     </ul>
     </el-form>
   </div>
@@ -26,8 +26,9 @@ export default {
     return {
       form1: {
         username: 'admin',
-        password: 'admin'
-      }
+        password: 'admin1'
+      },
+      loading: false,
     }
   },
   computed: {
@@ -61,21 +62,24 @@ export default {
       }
 
       let errorPwd = storage.get('error_pwd');
-
-      if(errorPwd>0){
+      // 3次输入密码错误后需输入验证码
+      if(errorPwd>2){
         captcha.show();
       }else{
         this.login()
       }
     },
-    login (ticket){
+    login (ticket,randstr){
+      this.loading = true;
       let pwd = md5(this.form1.password);
       let errorPwd = storage.get('error_pwd');
       store.dispatch("auth/login", {
         username: this.form1.username,
         password: pwd,
-        ticket: ticket
+        ticket: ticket,
+        randstr: randstr
       }).then((data)=>{
+        this.loading = false;
         if(data.status==0){
           this.$message.success('登录成功');
           var redirect = this.$route.query.redirect;
@@ -85,16 +89,20 @@ export default {
             this.$goRoute('/');
           }
           storage.set('error_pwd',0);
+
         }else{
           errorPwd = errorPwd ? ++errorPwd : 1;
           storage.set('error_pwd',errorPwd);
           this.$message.error(data.msg);
         }
+      }).catch(()=>{
+        this.loading = false;
       })
     },
-    captchaCallback (e){     
+    captchaCallback (e){
+      console.log(e)
       if(e.ret === 0){
-        this.login(e.ticket)
+        this.login(e.ticket,e.randstr)
       }else{
         this.$message.error('请选择正确的验证码');
       }
